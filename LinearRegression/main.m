@@ -32,7 +32,7 @@ alpha = 0.01;       % @ 学习速度，需要尝试改变，一般为0.01,0.03,0.1,0.3 ....
 num_iters = 400;    % @ 迭代求解次数，尝试改变
 
 theta = zeros(cols,1);
-[theta,J_history] = gradientDescent(X,y,theta,alpha,num_iters);
+[theta,J_history] = gradientDescent(X,y,theta,alpha,num_iters);% @ ，注意这里只是x的一次方情况，即h=theta(0)+theta(1)x1+theta(2)x2+...具体情况请修改
 
 %% 画代价函数J随迭代次数变化的图
 figure;
