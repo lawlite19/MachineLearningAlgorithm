@@ -32,4 +32,4 @@
 [1.5]:normalEquations.m
 
 
-  [3.1]: ./images/LinearRegression_01.png "LinearRegression_01.png"
+  [3.1]: ../images/LinearRegression_01.png "LinearRegression_01.png"
