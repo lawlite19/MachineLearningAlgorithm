@@ -35,4 +35,4 @@
 [1.6]:predict.m
 
 [3.1]: ../images/LogisticRegression_01.png "LogisticRegression_01.png"
-[3.2]: ./images/LogisticRegression_02.png "LogisticRegression_02.png"
+[3.2]: ../images/LogisticRegression_02.png "LogisticRegression_02.png"
