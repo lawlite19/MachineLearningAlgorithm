@@ -45,7 +45,59 @@ fprintf('\n初始化参数theta...\n');
 initial_Theta1 = randInitializeWeights(input_layer_size,hidden_layer_size); 
 initial_Theta2 = randInitializeWeights(hidden_layer_size,num_labels);
 
-initial_nn_params = [initial_Theta1(:),initial_Theta2(:)];  %展开theta
+initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];  %展开theta
 
-%% 梯度检查
+%% 梯度检查(没有正则化的)
+
+checkNNGradients;
+fprintf('\n程序暂停，按任意键继续\n');
+pause;
+
+
+%% 梯度检查(正则化的)
+lambda = 3;
+
+checkNNGradients(lambda);
+
+fprintf('\n程序暂停，按任意键继续\n');
+pause;
+
+%% 训练神经网络
+fprintf('\n训练神经网络中...\n')
+
+%调用优化的梯度下降算法
+options = optimset('MaxIter', 50);
+lambda = 1;
+% 
+costFunction = @(p) nnCostFunction(p, ...
+                                   input_layer_size, ...
+                                   hidden_layer_size, ...
+                                   num_labels, X, y, lambda);
+% 执行fmincg                              
+[nn_params, cost] = fmincg(costFunction, initial_nn_params, options);
+
+% 重新调整得到的theta
+Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
+                 hidden_layer_size, (input_layer_size + 1));
+
+Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
+                 num_labels, (hidden_layer_size + 1));
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
+
+%% 可视化Theta1
+fprintf('\n可视化Theta1\n');
+
+displayData(Theta1(:,(2:end)));
+
+fprintf('\n程序暂停，按任意键继续\n');
+pause;
+
+%% 计算预测精准度
+pred = predict(Theta1,Theta2,X);
+
+fprintf('\n训练集中的精准度为：%f\n',mean(double(pred==y))*100);
+
 
