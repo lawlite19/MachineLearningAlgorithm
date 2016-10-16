@@ -4,16 +4,16 @@ function [ numgrad ] = computeNumericalGradient( J,theta )
 
 %% 初始化变量
 numgrad = zeros(size(theta));   % 结果
-step = zeros(size(theta));      % 
+step = zeros(size(theta));      % 对应的step向量
 e = 1e-4;   % 步长
 
 %% 计算梯度
-for i = 1:numel(theta)
+for i = 1:numel(theta)  %遍历，对每个theta求偏导
     step(i) = e;    %对应位置设为步长
     loss1 = J(theta-step);  %将所有theta传入会返回代价
     loss2 = J(theta+step);
     numgrad(i) = (loss2-loss1)/(2*e);   % 梯度定义
-    step(i)=0;  %当前位置重置为0
+    step(i)=0;  %当前位置重置为0，
 end
 
 end

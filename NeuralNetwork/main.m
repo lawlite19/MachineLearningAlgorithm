@@ -47,14 +47,14 @@ initial_Theta2 = randInitializeWeights(hidden_layer_size,num_labels);
 
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];  %展开theta
 
-%% 梯度检查(没有正则化的)
+%% 梯度检查(没有正则化的，检查通过可注释掉)
 
 checkNNGradients;
 fprintf('\n程序暂停，按任意键继续\n');
 pause;
 
 
-%% 梯度检查(正则化的)
+%% 梯度检查(正则化的，检查通过可注释掉)
 lambda = 3;
 
 checkNNGradients(lambda);
@@ -68,12 +68,13 @@ fprintf('\n训练神经网络中...\n')
 %调用优化的梯度下降算法
 options = optimset('MaxIter', 50);
 lambda = 1;
-% 
+
+% 声明函数句柄为nnCostFunction，p为待传入的参数
 costFunction = @(p) nnCostFunction(p, ...
                                    input_layer_size, ...
                                    hidden_layer_size, ...
                                    num_labels, X, y, lambda);
-% 执行fmincg                              
+% 执行梯度优化算法fmincg                              
 [nn_params, cost] = fmincg(costFunction, initial_nn_params, options);
 
 % 重新调整得到的theta
