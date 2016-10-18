@@ -24,12 +24,14 @@ y = 1+mod(1:m,num_labels)'; %初始化y
 nn_params = [Theta1(:);Theta2(:)];
 
 %% 梯度下降算法求grad
+
+% 声明函数句柄为costFunc，p为待传入参数
 costFunc = @(p)nnCostFunction(p,input_layer_size,hidden_layer_size,...
                               num_labels,X,y,lambda);
 [cost,grad] = costFunc(nn_params);  %将初始化好的theta传进去
 
 %% 使用梯度的定义求grad
-numgrad = computeNumericalGradient(costFunc,nn_params);
+numgrad = computeNumericalGradient(costFunc,nn_params); %这里使用了函数句柄costFunc作为参数
 
 
 %% 显示结果及对比
