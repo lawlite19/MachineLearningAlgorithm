@@ -18,6 +18,8 @@
 - 高斯核函数
 - 垃圾邮件预测
 
+### [五、K-Means聚类][5]
+
 
 
 
@@ -36,3 +38,4 @@
 [2]:./LogisticRegression/readme.md
 [3]:./NeuralNetwork/readme.md
 [4]:./SVM/readme.md
+[5]:./K-Means/readme.md
